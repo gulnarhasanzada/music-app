@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { RegisterComponent } from './register/register.component';
 
 
 
@@ -39,7 +40,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     ArtistDiscographyComponent,
     AlbumComponent,
     FavouritesComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
