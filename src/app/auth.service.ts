@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { environment } from './../environments/environment';
 import jwt_decode from "jwt-decode";
 import User from './User';
+import RegisterUser from './RegisterUser';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,9 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem("access_token");
+  }
+
+  register(registerUser: RegisterUser): Observable<any>{
+    return this.http.post<any>(environment.userAPIBase + "/register", registerUser);
   }
 }
