@@ -22,12 +22,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { ArtistDiscographyComponent } from './artist-discography/artist-discography.component';
 import { AlbumComponent } from './album/album.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptTokenService } from './intercept-token.service';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -41,7 +43,8 @@ import { RegisterComponent } from './register/register.component';
     AlbumComponent,
     FavouritesComponent,
     SearchResultsComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,13 @@ import { RegisterComponent } from './register/register.component';
     MatSnackBarModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptTokenService,
+      multi: true
+    }    
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

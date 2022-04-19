@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import RegisterUser from '../RegisterUser';
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerUser = {userName: "", password: "", password2: ""};
+  registerUser: RegisterUser = {userName: "", password: "", password2: ""};
   warning = "";
   success = false;
   loading = false;
