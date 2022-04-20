@@ -9,16 +9,18 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RegisterComponent } from './register/register.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { GuardAuthService } from './guard-auth.service';
+
 
 const routes: Routes = [
-  { path: 'newReleases', component: NewReleasesComponent },
-  { path: 'artist/:id', component: ArtistDiscographyComponent },
-  { path: 'album/:id', component: AlbumComponent },
-  { path: 'search', component: SearchResultsComponent },
-  { path: 'favourites', component: FavouritesComponent },
+  { path: 'newReleases', component: NewReleasesComponent , canActivate: [GuardAuthService]},
+  { path: 'artist/:id', component: ArtistDiscographyComponent , canActivate: [GuardAuthService]},
+  { path: 'album/:id', component: AlbumComponent, canActivate: [GuardAuthService] },
+  { path: 'search', component: SearchResultsComponent, canActivate: [GuardAuthService] },
+  { path: 'favourites', component: FavouritesComponent, canActivate: [GuardAuthService] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'about', component: AboutComponent , canActivate: [GuardAuthService]},
   { path: '', redirectTo: '/newReleases', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
 ];

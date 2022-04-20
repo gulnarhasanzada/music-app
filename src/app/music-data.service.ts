@@ -43,11 +43,14 @@ export class MusicDataService {
   }
 
   addToFavourites(id:string) {
-    return this.http.put<[String]>(`${environment.userAPIBase}/favourites/${id}`,id);
+      return this.http.put(`${environment.userAPIBase}/favourites/${id}`, {id});
   }
   
   removeFromFavourites(id:string): Observable<any> {
-    return this.http.delete<[String]>(`${environment.userAPIBase}/favourites/${id}`);
+    return this.spotifyToken.getBearerToken().pipe(mergeMap(token=>{
+      return this.http.delete<[String]>(`${environment.userAPIBase}/favourites/${id}`, { headers: { "Authorization": `Bearer ${token}` } });
+    }));
+    
   }
   
   getFavourites(): Observable<any> {

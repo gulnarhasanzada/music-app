@@ -23,10 +23,12 @@ export class AlbumComponent implements OnInit {
     })
   }
 
-  addToFavourites(trackID: String){
-    if(this.musicService.addToFavourites(trackID)){
+  addToFavourites(trackID: string){
+    this.musicService.addToFavourites(trackID).subscribe(res=>{
       this.sbService.open("Adding to Favourites...", "Done", { duration: 1500 });
-    }
+    }, err=>{
+      this.sbService.open("Unable to add song to Favourites", "Error", { duration: 1500 });
+    })
   }
 
 }
