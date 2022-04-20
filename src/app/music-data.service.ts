@@ -43,7 +43,12 @@ export class MusicDataService {
   }
 
   addToFavourites(id:string) {
-      return this.http.put(`${environment.userAPIBase}/favourites/${id}`, {id});
+    return this.spotifyToken.getBearerToken().pipe(mergeMap(token=>{
+      return this.http.put(`${environment.userAPIBase}/favourites/${id}`,{
+        "_id": id
+        }, { headers: { "Authorization": `Bearer ${token}` } });
+    }));
+      
   }
   
   removeFromFavourites(id:string): Observable<any> {

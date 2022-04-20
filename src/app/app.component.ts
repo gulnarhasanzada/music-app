@@ -1,3 +1,15 @@
+/*********************************************************************************
+*  WEB422 – Assignment 5/6
+
+*  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part of this
+*  assignment has been copied manually or electronically from any other source (including web sites) or 
+*  distributed to other students.
+* 
+*  Name: Gulnar Hasan-zada Student ID: 141524207  Date: 2022-04-20
+*
+********************************************************************************/ 
+
+
 import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router, Event } from '@angular/router';
 import { AuthService } from './auth.service';
@@ -14,7 +26,7 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService){}
 
   handleSearch(){
-    this.router.navigate(['/search?q=',this.searchString]);
+    this.router.navigate(['/search'],{ queryParams: { q: this.searchString } });
     this.searchString ="";
   }
 
